@@ -21,7 +21,7 @@ const About = () => {
         {/* Text Content */}
         <div className="flex-1 text-center lg:text-left">
           <p className="mb-10 max-w-xl mx-auto lg:mx-0 font-ovo">
-            I’m a beginner full stack developer passionate about building
+            I am a beginner full stack developer passionate about building
             projects that connect frontend and backend. My journey began with
             C++ which strengthened my problem solving foundation, and I later
             expanded into JavaScript, React.js, and Next.js for modern web
