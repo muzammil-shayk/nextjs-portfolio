@@ -1,19 +1,19 @@
-import { assets } from "@/assets/assets";
-import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+import { assets } from '@/assets/assets';
+import Image from 'next/image';
+import React, { useEffect, useRef, useState } from 'react';
 
 const Navbar = () => {
   const [isScroll, setIsScroll] = useState(false);
   const sideMenuRef = useRef();
   const openMenu = () => {
-    sideMenuRef.current.style.transform = "translateX(-16rem)";
+    sideMenuRef.current.style.transform = 'translateX(-16rem)';
   };
   const closeMenu = () => {
-    sideMenuRef.current.style.transform = "translateX(16rem)";
+    sideMenuRef.current.style.transform = 'translateX(16rem)';
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
+    window.addEventListener('scroll', () => {
       if (scrollY > 50) {
         setIsScroll(true);
       } else {
@@ -28,7 +28,7 @@ const Navbar = () => {
       </div>
       <nav
         className={`w-full h-24 fixed px-5 lg:px-8 xl:px-[8%] flex items-center justify-between z-50 ${
-          isScroll ? "bg-white/50 backdrop-blur-lg shadow-sm" : ""
+          isScroll ? 'bg-white/50 backdrop-blur-lg shadow-sm' : ''
         }`}
       >
         <a href="#top">
@@ -40,7 +40,7 @@ const Navbar = () => {
         </a>
         <ul
           className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 ${
-            isScroll ? "" : "bg-white/30 shadow-sm"
+            isScroll ? '' : 'bg-white/30 shadow-sm'
           } `}
         >
           <li className="font-ovo">

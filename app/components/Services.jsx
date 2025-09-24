@@ -1,6 +1,6 @@
-import { assets, serviceData } from "@/assets/assets";
-import Image from "next/image";
-import React from "react";
+import { assets, serviceData } from '@/assets/assets';
+import Image from 'next/image';
+import React from 'react';
 
 const Services = () => {
   return (
@@ -27,7 +27,7 @@ const Services = () => {
             <h3 className="text-lg my-4 text-gray-700">{title}</h3>
             <p className="text-sm text-gray-600 leading-5">{description}</p>
             <a href={link} className="flex items-center gap-2 text-sm mt-5">
-              Read More{" "}
+              Read More{' '}
               <Image src={assets.right_arrow} alt="" className="w-4" />
             </a>
           </div>
