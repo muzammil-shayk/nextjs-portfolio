@@ -94,22 +94,21 @@ const Navbar = () => {
               className="w-5 cursor-pointer"
             />
           </div>
-          <li>
-            <li className="font-ovo" onClick={closeMenu}>
-              <a href="#top">Home</a>
-            </li>
-            <li className="font-ovo" onClick={closeMenu}>
-              <a href="#about">About Me</a>
-            </li>
-            <li className="font-ovo" onClick={closeMenu}>
-              <a href="#services">Services</a>
-            </li>
-            <li className="font-ovo" onClick={closeMenu}>
-              <a href="#work">My Work</a>
-            </li>
-            <li className="font-ovo" onClick={closeMenu}>
-              <a href="#contact">Contact Me</a>
-            </li>
+
+          <li className="font-ovo" onClick={closeMenu}>
+            <a href="#top">Home</a>
+          </li>
+          <li className="font-ovo" onClick={closeMenu}>
+            <a href="#about">About Me</a>
+          </li>
+          <li className="font-ovo" onClick={closeMenu}>
+            <a href="#services">Services</a>
+          </li>
+          <li className="font-ovo" onClick={closeMenu}>
+            <a href="#work">My Work</a>
+          </li>
+          <li className="font-ovo" onClick={closeMenu}>
+            <a href="#contact">Contact Me</a>
           </li>
         </ul>
       </nav>
