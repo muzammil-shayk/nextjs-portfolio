@@ -17,8 +17,6 @@ const About = () => {
             className="w-full rounded-3xl"
           />
         </div>
-
-        {/* Text Content */}
         <div className="flex-1 text-center lg:text-left">
           <p className="mb-10 max-w-xl mx-auto lg:mx-0 font-ovo">
             I am a beginner full stack developer passionate about building
