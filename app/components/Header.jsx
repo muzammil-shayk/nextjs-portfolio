@@ -16,11 +16,9 @@ const Header = () => {
         Full Stack Developer based in Lahore, Pakistan.
       </h1>
       <p className="max-w-2xl mx-auto font-ovo">
-        I’m a computer science student and beginner full stack developer with
-        experience in C++, JavaScript, React.js, Next.js, SQL, and MongoDB. I’m
-        also exploring Angular and NestJS to broaden my skills. I enjoy building
-        projects that connect frontend and backend, and I’m focused on learning
-        by doing to grow into a versatile developer.
+        Full stack developer in the making with skills in C++, JavaScript,
+        React, Next.js, SQL, and MongoDB, currently exploring Angular and NestJS
+        to build impactful projects across frontend and backend.
       </p>
       <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
         <a

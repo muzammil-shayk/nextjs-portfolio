@@ -10,6 +10,10 @@ import firebase from "./firebase.png";
 import figma from "./figma.png";
 import git from "./git.png";
 import mongodb from "./mongodb.png";
+import sql from "./sql.svg";
+import angular from "./angular.svg";
+import nestjs from "./nestjs.svg";
+import cpp from "./cpp.svg";
 import right_arrow_white from "./right-arrow-white.png";
 import logo from "./logo.png";
 import logo_dark from "./logo_dark.png";
@@ -49,6 +53,10 @@ export const assets = {
   figma,
   git,
   mongodb,
+  sql,
+  angular,
+  nestjs,
+  cpp,
   right_arrow_white,
   logo,
   logo_dark,
@@ -76,83 +84,94 @@ export const assets = {
   right_arrow_bold_dark,
 };
 
+// ✅ Update your portfolio projects
 export const workData = [
   {
-    title: "Frontend project",
-    description: "Web Design",
+    title: "Movie Theater Management System",
+    description: "Full Stack Web App",
     bgImage: "/work-1.png",
   },
   {
-    title: "Geo based app",
-    description: "Mobile App",
+    title: "Byters Food Review",
+    description: "Full Stack Web App",
     bgImage: "/work-2.png",
   },
   {
-    title: "Photography site",
-    description: "Web Design",
+    title: "Animal Classification ML Project",
+    description: "Machine Learning",
     bgImage: "/work-3.png",
   },
   {
-    title: "UI/UX designing",
-    description: "UI/UX Design",
+    title: "Portfolio Website",
+    description: "Frontend Development",
     bgImage: "/work-4.png",
   },
 ];
 
+// ✅ Services you can showcase
 export const serviceData = [
   {
     icon: assets.web_icon,
-    title: "Web design",
-    description: "Web development is the process of building, programming...",
-    link: "",
-  },
-  {
-    icon: assets.mobile_icon,
-    title: "Mobile app",
+    title: "Full Stack Development",
     description:
-      "Mobile app development involves creating software for mobile devices...",
+      "Building scalable web apps with React.js, Next.js, SQL, MongoDB, Angular, and NestJS.",
     link: "",
   },
   {
     icon: assets.ui_icon,
-    title: "UI/UX design",
+    title: "Frontend Development",
     description:
-      "UI/UX design focuses on creating a seamless user experience...",
+      "Designing responsive, user-friendly interfaces with React.js, Next.js, and Angular.",
+    link: "",
+  },
+  {
+    icon: assets.mobile_icon,
+    title: "API & Backend",
+    description:
+      "Developing REST APIs, handling databases, and backend logic with SQL, MongoDB, and NestJS.",
     link: "",
   },
   {
     icon: assets.graphics_icon,
-    title: "Graphics design",
-    description: "Creative design solutions to enhance visual communication...",
+    title: "Problem Solving",
+    description:
+      "Strong foundation in C++ and algorithms for clean, efficient code.",
     link: "",
   },
 ];
 
+// ✅ Info section for quick highlights
 export const infoList = [
   {
     icon: assets.code_icon,
     iconDark: assets.code_icon_dark,
-    title: "Languages",
-    description: "HTML, CSS, JavaScript React Js, Next Js",
+    title: "Languages & Frameworks",
+    description:
+      "C++, JavaScript, React.js, Next.js, Angular, NestJS, SQL, MongoDB",
   },
   {
     icon: assets.edu_icon,
     iconDark: assets.edu_icon_dark,
     title: "Education",
-    description: "B.Tech in Computer Science",
+    description: "Bachelors in Computer Science",
   },
   {
     icon: assets.project_icon,
     iconDark: assets.project_icon_dark,
     title: "Projects",
-    description: "Built more than 5 projects",
+    description:
+      "AirBeam, BYTERS Food Review Webpage, Movie Theater System, ML Projects",
   },
 ];
 
+// ✅ Tools section
 export const toolsData = [
   assets.vscode,
-  assets.firebase,
   assets.mongodb,
-  assets.figma,
+  assets.sql,
+  assets.angular,
+  assets.nestjs,
+  assets.cpp,
   assets.git,
+  assets.figma,
 ];
