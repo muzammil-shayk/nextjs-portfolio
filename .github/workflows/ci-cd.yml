@@ -151,7 +151,7 @@ jobs:
         uses: treosh/lighthouse-ci-action@v10
         with:
           urls: |
-            https://your-portfolio-url.vercel.app
+            https://m-muzammil.vercel.app/
           configPath: './lighthouserc.json'
           uploadArtifacts: true
           temporaryPublicStorage: true
