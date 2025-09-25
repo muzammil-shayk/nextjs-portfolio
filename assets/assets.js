@@ -11,6 +11,7 @@ import figma from './figma.png';
 import git from './git.png';
 import mongodb from './mongodb.png';
 import sql from './sql.svg';
+import react from './react.svg';
 import angular from './angular.svg';
 import nestjs from './nestjs.svg';
 import cpp from './cpp.svg';
@@ -54,6 +55,7 @@ export const assets = {
   git,
   mongodb,
   sql,
+  react,
   angular,
   nestjs,
   cpp,
@@ -165,6 +167,7 @@ export const toolsData = [
   assets.vscode,
   assets.mongodb,
   assets.sql,
+  assets.react,
   assets.angular,
   assets.nestjs,
   assets.cpp,

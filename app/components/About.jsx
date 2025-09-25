@@ -2,7 +2,7 @@ import { assets, infoList, toolsData } from '@/assets/assets';
 import Image from 'next/image';
 import React from 'react';
 
-const About = () => {
+const About = ({ isDarkMode }) => {
   return (
     <div id="about" className="w-full px-6 sm:px-[12%] py-10 scroll-mt-20">
       <h4 className="text-center -mt-5 text-lg font-ovo">Introduction</h4>
@@ -33,24 +33,30 @@ const About = () => {
 
           {/* Info List */}
           <ul className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-xl mx-auto lg:mx-0">
-            {infoList.map(({ icon, title, description }, index) => (
+            {infoList.map(({ icon, iconDark, title, description }, index) => (
               <li
                 key={index}
-                className="border-[0.5px] border-gray-400 rounded-xl cursor-pointer p-6 hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-black"
+                className="border-[0.5px] border-gray-400 rounded-xl cursor-pointer p-6 hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-black dark:border-white dark:hover:shadow-white/50 dark:hover:bg-darkHover/50"
               >
                 <Image
-                  src={icon}
+                  src={isDarkMode ? iconDark : icon}
                   alt={title}
                   className="w-7 mt-3 mx-auto lg:mx-0"
                 />
-                <h3 className="my-4 font-semibold text-gray-700">{title}</h3>
-                <p className="text-gray-600 text-sm">{description}</p>
+                <h3 className="my-4 font-semibold text-gray-700 dark:text-white">
+                  {title}
+                </h3>
+                <p className="text-gray-600 text-sm dark:text-white/80">
+                  {description}
+                </p>
               </li>
             ))}
           </ul>
 
           {/* Tools */}
-          <h4 className="my-6 text-gray-700 font-ovo">Tools I use</h4>
+          <h4 className="my-6 text-gray-700 font-ovo dark:text-white/80">
+            Tools I use
+          </h4>
           <ul className="flex flex-wrap justify-center lg:justify-start items-center gap-3 sm:gap-5">
             {toolsData.map((tool, index) => (
               <li
