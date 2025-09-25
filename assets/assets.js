@@ -84,31 +84,29 @@ export const assets = {
   right_arrow_bold_dark,
 };
 
-// ✅ Update your portfolio projects
 export const workData = [
   {
-    title: 'Movie Theater Management System',
-    description: 'Full Stack Web App',
+    title: 'AirBeam',
+    description: 'File Sharing App.',
     bgImage: '/work-1.png',
   },
   {
     title: 'Byters Food Review',
-    description: 'Full Stack Web App',
+    description: 'Food Review App',
     bgImage: '/work-2.png',
   },
   {
-    title: 'Animal Classification ML Project',
-    description: 'Machine Learning',
+    title: 'ByterVerse',
+    description: 'Movie Theater System',
     bgImage: '/work-3.png',
   },
   {
     title: 'Portfolio Website',
-    description: 'Frontend Development',
+    description: 'Frontend UI Design',
     bgImage: '/work-4.png',
   },
 ];
 
-// ✅ Services you can showcase
 export const serviceData = [
   {
     icon: assets.web_icon,
@@ -140,7 +138,6 @@ export const serviceData = [
   },
 ];
 
-// ✅ Info section for quick highlights
 export const infoList = [
   {
     icon: assets.code_icon,
@@ -164,7 +161,6 @@ export const infoList = [
   },
 ];
 
-// ✅ Tools section
 export const toolsData = [
   assets.vscode,
   assets.mongodb,
