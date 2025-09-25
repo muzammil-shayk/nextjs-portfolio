@@ -1,21 +1,51 @@
 import { assets, workData } from '@/assets/assets';
 import Image from 'next/image';
 import React from 'react';
-
+import { motion } from 'motion/react';
 const Work = ({ isDarkMode }) => {
   return (
-    <div id="work" className="w-full px-6 sm:px-[12%] py-10 scroll-mt-20">
-      <h4 className="text-center -mt-5 text-lg font-ovo">My Portfolio</h4>
-      <h2 className="text-center text-4xl sm:text-5xl font-ovo">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      id="work"
+      className="w-full px-6 sm:px-[12%] py-10 scroll-mt-20"
+    >
+      <motion.h4
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="text-center -mt-5 text-lg font-ovo"
+      >
+        My Portfolio
+      </motion.h4>
+      <motion.h2
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+        className="text-center text-4xl sm:text-5xl font-ovo"
+      >
         My Latest Work
-      </h2>
-      <p className="text-center max-w-2xl mx-auto mt-5 mb-12 font-ovo">
+      </motion.h2>
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.7 }}
+        className="text-center max-w-2xl mx-auto mt-5 mb-12 font-ovo"
+      >
         Welcome to my Portfolio!. Explore a collection of projects showcasing my
         work.
-      </p>
-      <div className="grid grid-cols-auto my-10 gap-5 dark:text-black">
+      </motion.p>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.9 }}
+        className="grid grid-cols-auto my-10 gap-5 dark:text-black"
+      >
         {workData.map((project, index) => (
-          <div
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
             key={index}
             className="aspect-square bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group"
             style={{ backgroundImage: `url(${project.bgImage})` }}
@@ -29,11 +59,15 @@ const Work = ({ isDarkMode }) => {
                 <Image src={assets.send_icon} alt="send icon" className="w-5" />
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
-      <a
-        href=""
+      </motion.div>
+      <motion.a
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 1 }}
+        target="_blank"
+        href="https://github.com/muzammil-shayk"
         className="w-max flex items-center justify-center gap-2 text-gray-700 border-[0.5px] border-gray-700 rounded-full py-3 px-10 mx-auto my-20 hover:bg-lightHover duration-500 dark:text-white dark:border-white/80 dark:hover:bg-darkHover"
       >
         Show more{' '}
@@ -44,8 +78,8 @@ const Work = ({ isDarkMode }) => {
           alt="right arrow"
           className="w-4"
         />
-      </a>
-    </div>
+      </motion.a>
+    </motion.div>
   );
 };
 
