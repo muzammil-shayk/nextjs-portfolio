@@ -13,10 +13,21 @@
 
   --grid-template-columns-auto: repeat(auto-fit, minmax(200px, 1fr));
 }
-
-/* * {
-  font-family: var(--font-outfit);
-} */
+/* 
 body {
   font-family: var(--font-outfit);
+}
+.dark body {
+  background-color: var(--color-darkTheme);
+  color: #fff;
+} */
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+  font-family: var(--font-outfit);
+  @apply bg-white text-black;
+}
+
+.dark body {
+  @apply bg-[var(--color-darkTheme)] text-white;
 }
