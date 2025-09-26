@@ -14,6 +14,12 @@ const outfit = Outfit({
 export const metadata = {
   title: 'Portfolio - Muzammil',
   description: '',
+  icons: {
+    icon: [
+      { url: '/favicon-light.png', media: '(prefers-color-scheme: light)' },
+      { url: '/favicon-dark.png', media: '(prefers-color-scheme: dark)' },
+    ],
+  },
 };
 
 export default function RootLayout({ children }) {

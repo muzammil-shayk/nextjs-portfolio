@@ -91,21 +91,25 @@ export const workData = [
     title: 'AirBeam',
     description: 'File Sharing App.',
     bgImage: '/work-1.png',
+    link: 'https://airbeam.onrender.com/',
   },
   {
     title: 'Byters Food Review',
     description: 'Food Review App',
     bgImage: '/work-2.png',
+    link: 'https://byters.vercel.app/',
   },
   {
     title: 'ByterVerse',
     description: 'Movie Theater System',
     bgImage: '/work-3.png',
+    link: 'https://github.com/muzammil-shayk/ByterVerse',
   },
   {
     title: 'Portfolio Website',
     description: 'Frontend UI Design',
     bgImage: '/work-4.png',
+    link: 'https://m-muzammil.vercel.app/',
   },
 ];
 
