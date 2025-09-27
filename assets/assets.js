@@ -100,10 +100,10 @@ export const workData = [
     link: 'https://byters.vercel.app/',
   },
   {
-    title: 'ByterVerse',
-    description: 'Movie Theater System',
+    title: 'AirQR',
+    description: 'QR Code Generator',
     bgImage: '/work-3.png',
-    link: 'https://github.com/muzammil-shayk/ByterVerse',
+    link: 'https://airqr.vercel.app',
   },
   {
     title: 'Portfolio Website',
