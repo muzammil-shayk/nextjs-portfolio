@@ -102,7 +102,7 @@ const About = ({ isDarkMode }) => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.3 }}
             >
-              Tools I use
+              My Expertise
             </motion.h4>
             <motion.ul
               className="flex flex-wrap justify-center lg:justify-start items-center gap-3 sm:gap-5"

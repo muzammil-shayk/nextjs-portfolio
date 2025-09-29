@@ -152,18 +152,13 @@ export const infoList = [
     description:
       'C++, JavaScript, React.js, Next.js, Angular, NestJS, SQL, MongoDB',
   },
-  {
-    icon: assets.edu_icon,
-    iconDark: assets.edu_icon_dark,
-    title: 'Education',
-    description: 'Bachelors in Computer Science',
-  },
+
   {
     icon: assets.project_icon,
     iconDark: assets.project_icon_dark,
     title: 'Projects',
     description:
-      'AirBeam, BYTERS Food Review Webpage, Movie Theater System, ML Projects',
+      'AirQR, AirBeam, BYTERS Food Review Webpage, Movie Theater System, ML Projects',
   },
 ];
 
