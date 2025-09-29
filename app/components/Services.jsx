@@ -9,13 +9,13 @@ const Services = () => {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
       id="services"
-      className="w-full px-6 sm:px-[12%] py-10 scroll-mt-20"
+      className="w-full px-6 sm:px-[12%] py-10 scroll-mt-20 mt-16"
     >
       <motion.h4
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="text-center -mt-5 text-lg font-ovo"
+        className="text-center mt-2 text-lg font-ovo"
       >
         What I offer
       </motion.h4>

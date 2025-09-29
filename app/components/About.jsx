@@ -6,13 +6,13 @@ const About = ({ isDarkMode }) => {
   return (
     <motion.div
       id="about"
-      className="w-full px-6 sm:px-[12%] py-10 scroll-mt-20"
+      className="w-full px-6 sm:px-[12%] py-10 scroll-mt-20 mt-16"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
       <motion.h4
-        className="text-center -mt-5 text-lg font-ovo"
+        className="text-center mt-2 text-lg font-ovo"
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
