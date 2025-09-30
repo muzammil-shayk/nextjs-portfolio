@@ -20,6 +20,9 @@ export const metadata = {
       { url: '/favicon-dark.png', media: '(prefers-color-scheme: dark)' },
     ],
   },
+  other: {
+    'google-site-verification': 'sQvmL0WADTzA0_IXlqlnFwWW2QberYsEZXoWkgY2eH0',
+  },
 };
 
 export default function RootLayout({ children }) {
