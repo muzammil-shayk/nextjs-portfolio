@@ -28,11 +28,6 @@ const Footer = ({ isDarkMode }) => {
               Linkedin
             </a>
           </li>
-          <li>
-            <a target="_blank" href="https://www.instagram.com/muzammilshayk">
-              Instagram
-            </a>
-          </li>
         </ul>
       </div>
     </div>
