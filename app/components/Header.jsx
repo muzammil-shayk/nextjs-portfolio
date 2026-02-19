@@ -36,8 +36,7 @@ const Header = () => {
         className="max-w-2xl mx-auto font-ovo"
       >
         Full stack developer in the making with skills in C++, JavaScript,
-        React, Next.js, SQL, and MongoDB, currently exploring Angular and NestJS
-        to build impactful projects across frontend and backend.
+        React, Next.js, SQL, and MongoDB.
       </motion.p>
       <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
         <motion.a
