@@ -2,6 +2,9 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
@@ -18,7 +21,7 @@
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
     "motion": "^12.23.22",
-    "next": "15.5.12",
+    "next": "^15.5.15",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
@@ -26,9 +29,12 @@
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
-    "eslint-config-next": "15.5.12",
+    "eslint-config-next": "^15.5.15",
     "husky": "^8.0.0",
     "prettier": "^3.0.0",
     "tailwindcss": "^4"
+  },
+  "overrides": {
+    "postcss": "^8.5.10"
   }
 }
