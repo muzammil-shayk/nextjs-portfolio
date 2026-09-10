@@ -1,20 +1,22 @@
+'use client';
 import { assets, serviceData } from '@/assets/assets';
 import Image from 'next/image';
 import React from 'react';
 import { motion } from 'motion/react';
+
+const viewport = { once: true, amount: 0.2 };
+
 const Services = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+    <section
       id="services"
-      className="w-full px-6 sm:px-[12%] py-10 scroll-mt-20 mt-16"
+      className="w-full px-6 sm:px-[12%] py-10 scroll-mt-24 mt-16"
     >
       <motion.h4
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
+        viewport={viewport}
+        transition={{ duration: 0.5 }}
         className="text-center mt-2 text-lg font-ovo"
       >
         What I offer
@@ -22,7 +24,8 @@ const Services = () => {
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
+        viewport={viewport}
+        transition={{ duration: 0.5, delay: 0.1 }}
         className="text-center text-4xl sm:text-5xl font-ovo"
       >
         My Services
@@ -30,7 +33,8 @@ const Services = () => {
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.7 }}
+        viewport={viewport}
+        transition={{ duration: 0.5, delay: 0.2 }}
         className="text-center max-w-2xl mx-auto mt-5 mb-12 font-ovo"
       >
         I offer full stack development services with a focus on building clean,
@@ -38,21 +42,20 @@ const Services = () => {
         React.js and Next.js to deliver smooth user experiences, while on the
         backend I use SQL, MongoDB, and NestJS to create reliable and scalable
         systems. I also bring strong problem solving skills from my C++
-        background and am exploring Angular to expand my toolkit. Whether it’s
-        designing databases, connecting APIs, or crafting interactive
+        background and am exploring Angular to expand my toolkit. Whether
+        it&apos;s designing databases, connecting APIs, or crafting interactive
         interfaces, I enjoy turning ideas into working solutions.
       </motion.p>
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.9 }}
-        className="grid grid-cols-auto gap-6 my-10"
-      >
+      <div className="grid grid-cols-auto gap-6 my-10">
         {serviceData.map(({ icon, title, description, link }, index) => (
           <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewport}
+            transition={{ duration: 0.4, delay: 0.1 * index }}
             whileHover={{ scale: 1.05 }}
-            key={index}
-            className="border border-gray-400 rounded-lg px-8 py-12 hover:shadow-black cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 dark:hover:bg-darkHover dark:hover:shadow-white/50"
+            key={title}
+            className="border border-gray-400 rounded-lg px-8 py-12 hover:shadow-black hover:bg-lightHover duration-500 dark:hover:bg-darkHover dark:hover:shadow-white/50"
           >
             <Image src={icon} alt="" className="w-10" />
             <h3 className="text-lg my-4 text-gray-700 dark:text-white">
@@ -61,14 +64,16 @@ const Services = () => {
             <p className="text-sm text-gray-600 leading-5 dark:text-white/80">
               {description}
             </p>
-            <a href={link} className="flex items-center gap-2 text-sm mt-5">
-              Read More{' '}
-              <Image src={assets.right_arrow} alt="" className="w-4" />
-            </a>
+            {link && (
+              <a href={link} className="flex items-center gap-2 text-sm mt-5">
+                Read More{' '}
+                <Image src={assets.right_arrow} alt="" className="w-4" />
+              </a>
+            )}
           </motion.div>
         ))}
-      </motion.div>
-    </motion.div>
+      </div>
+    </section>
   );
 };
 

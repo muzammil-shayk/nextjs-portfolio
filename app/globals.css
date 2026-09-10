@@ -5,29 +5,49 @@
   --color-darkHover: #2a004a;
   --color-darkTheme: #11001f;
 
-  --font-outfit: 'Outfit', sans-serif;
-  --font-ovo: 'Ovo', serif;
+  --font-outfit: var(--font-outfit-family), sans-serif;
+  --font-ovo: var(--font-ovo-family), serif;
 
   --shadow-black: 4px 4px 0 #000;
   --shadow-white: 4px 4px 0 #fff;
 
   --grid-template-columns-auto: repeat(auto-fit, minmax(200px, 1fr));
 }
-/* 
-body {
-  font-family: var(--font-outfit);
-}
-.dark body {
-  background-color: var(--color-darkTheme);
-  color: #fff;
-} */
+
 @custom-variant dark (&:where(.dark, .dark *));
 
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
 body {
-  font-family: var(--font-outfit);
   @apply bg-white text-black;
 }
 
 .dark body {
   @apply bg-[var(--color-darkTheme)] text-white;
+}
+
+/* Keyboard focus stays visible everywhere. */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
