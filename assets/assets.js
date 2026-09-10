@@ -119,28 +119,24 @@ export const serviceData = [
     title: 'Full Stack Development',
     description:
       'Building scalable web apps with React.js, Next.js, SQL, MongoDB, Angular, and NestJS.',
-    link: '',
   },
   {
     icon: assets.ui_icon,
     title: 'Frontend Development',
     description:
       'Designing responsive, user-friendly interfaces with React.js, Next.js, and Angular.',
-    link: '',
   },
   {
     icon: assets.mobile_icon,
     title: 'API & Backend',
     description:
       'Developing REST APIs, handling databases, and backend logic with SQL, MongoDB, and NestJS.',
-    link: '',
   },
   {
     icon: assets.graphics_icon,
     title: 'Problem Solving',
     description:
       'Strong foundation in C++ and algorithms for clean, efficient code.',
-    link: '',
   },
 ];
 

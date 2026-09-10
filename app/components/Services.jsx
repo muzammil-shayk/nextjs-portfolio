@@ -1,5 +1,5 @@
 'use client';
-import { assets, serviceData } from '@/assets/assets';
+import { serviceData } from '@/assets/assets';
 import Image from 'next/image';
 import React from 'react';
 import { motion } from 'motion/react';
@@ -47,7 +47,7 @@ const Services = () => {
         interfaces, I enjoy turning ideas into working solutions.
       </motion.p>
       <div className="grid grid-cols-auto gap-6 my-10">
-        {serviceData.map(({ icon, title, description, link }, index) => (
+        {serviceData.map(({ icon, title, description }, index) => (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -64,12 +64,6 @@ const Services = () => {
             <p className="text-sm text-gray-600 leading-5 dark:text-white/80">
               {description}
             </p>
-            {link && (
-              <a href={link} className="flex items-center gap-2 text-sm mt-5">
-                Read More{' '}
-                <Image src={assets.right_arrow} alt="" className="w-4" />
-              </a>
-            )}
           </motion.div>
         ))}
       </div>
