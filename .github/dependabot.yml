@@ -1,0 +1,31 @@
+version: 2
+updates:
+  # The workflows pin every action to a commit SHA, which nothing else bumps.
+  # Dependabot rewrites the SHA and the trailing version comment together.
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+    commit-message:
+      prefix: 'ci'
+    labels:
+      - 'dependencies'
+
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: 'chore'
+    labels:
+      - 'dependencies'
+    groups:
+      # One PR for the routine patch/minor churn; majors stay separate so they
+      # get reviewed on their own.
+      minor-and-patch:
+        update-types:
+          - 'minor'
+          - 'patch'
