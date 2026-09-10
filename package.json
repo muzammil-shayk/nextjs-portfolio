@@ -16,7 +16,7 @@
     "type-check": "tsc --noEmit",
     "test": "node scripts/theme.test.mjs",
     "audit": "npm audit --audit-level=moderate",
-    "prepare": "husky install || true"
+    "prepare": "husky"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
