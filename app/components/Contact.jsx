@@ -54,7 +54,7 @@ const Contact = () => {
       id="contact"
       className="w-full px-6 sm:px-[12%] py-10 scroll-mt-24 mt-16 bg-[url('/footer-bg-color.png')] bg-no-repeat bg-center bg-[length:90%_auto] dark:bg-none"
     >
-      <motion.h4
+      <motion.p
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={viewport}
@@ -62,7 +62,7 @@ const Contact = () => {
         className="text-center mt-2 text-lg font-ovo"
       >
         Connect with me
-      </motion.h4>
+      </motion.p>
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}

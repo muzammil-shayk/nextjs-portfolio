@@ -13,7 +13,7 @@ const About = () => {
       id="about"
       className="w-full px-6 sm:px-[12%] py-10 scroll-mt-24 mt-16"
     >
-      <motion.h4
+      <motion.p
         className="text-center mt-2 text-lg font-ovo"
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -21,7 +21,7 @@ const About = () => {
         transition={{ duration: 0.5 }}
       >
         Introduction
-      </motion.h4>
+      </motion.p>
       <motion.h2
         className="text-center text-4xl sm:text-5xl font-ovo"
         initial={{ opacity: 0, y: -20 }}
