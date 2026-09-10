@@ -89,9 +89,21 @@ jobs:
         env:
           NODE_ENV: production
 
-      # Thresholds and the report upload target live in lighthouserc.json.
+      # Thresholds and the report output directory live in lighthouserc.json.
       - name: Run Lighthouse CI
         run: npx --yes @lhci/cli@0.15.1 autorun
+
+      # Reports are written locally rather than to a public URL, so they are
+      # kept as an artifact on the run. Uploaded even when the audit fails,
+      # since that is when the report is worth reading.
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci/reports/
+          include-hidden-files: true
+          retention-days: 7
 
   # Security Audit Job
   security-audit:
