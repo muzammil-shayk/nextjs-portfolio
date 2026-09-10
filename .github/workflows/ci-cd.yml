@@ -141,11 +141,12 @@ jobs:
           cache: 'npm'
 
       - name: Install Vercel CLI
-        run: npm install -g vercel
+        run: npm install -g vercel@59.15.1
 
       - name: Deploy to Vercel (Production)
-        run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
+        run: vercel deploy --prod --token="$VERCEL_TOKEN" --yes
         env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
@@ -155,6 +156,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [quality-checks, build-and-test]
     if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -166,24 +170,37 @@ jobs:
           cache: 'npm'
 
       - name: Install Vercel CLI
-        run: npm install -g vercel
+        run: npm install -g vercel@59.15.1
 
+      # The CLI prints the deployment URL on stdout and its progress on stderr,
+      # so stderr is dropped rather than merged. The old `2>&1 | tail -1` took
+      # whichever stream happened to write last.
       - name: Deploy Preview to Vercel
         id: deploy
         run: |
-          PREVIEW_URL=$(vercel --token=${{ secrets.VERCEL_TOKEN }} --yes 2>&1 | tail -1)
-          echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
+          set -o pipefail
+          preview_url=$(vercel deploy --token="$VERCEL_TOKEN" --yes 2>/dev/null | tail -n 1)
+          if [[ ! "$preview_url" =~ ^https:// ]]; then
+            echo "::error::Vercel did not return a deployment URL (got: '$preview_url')"
+            exit 1
+          fi
+          echo "preview_url=$preview_url" >> "$GITHUB_OUTPUT"
         env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
+      # The URL is passed through env, not interpolated into the script body,
+      # so it cannot terminate the string literal it lands in.
       - name: Comment Preview URL
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          PREVIEW_URL: ${{ steps.deploy.outputs.preview_url }}
         with:
           script: |
-            github.rest.issues.createComment({
+            await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `🚀 Preview deployment ready! View it at: ${{ steps.deploy.outputs.preview_url }}`
-            })
+              body: `🚀 Preview deployment ready! View it at: ${process.env.PREVIEW_URL}`,
+            });
