@@ -30,7 +30,6 @@ jobs:
 
       - name: Check code formatting
         run: npx prettier --check "**/*.{js,jsx,ts,tsx,json,css,md}"
-        continue-on-error: true
 
   # Build and Test Job
   build-and-test:
