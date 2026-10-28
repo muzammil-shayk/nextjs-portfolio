@@ -1,41 +1,190 @@
 @import 'tailwindcss';
 
-@theme {
-  --color-lightHover: #fcf4ff;
-  --color-darkHover: #2a004a;
-  --color-darkTheme: #11001f;
-
-  --font-outfit: var(--font-outfit-family), sans-serif;
-  --font-ovo: var(--font-ovo-family), serif;
-
-  --shadow-black: 4px 4px 0 #000;
-  --shadow-white: 4px 4px 0 #fff;
-
-  --grid-template-columns-auto: repeat(auto-fit, minmax(200px, 1fr));
-}
-
 @custom-variant dark (&:where(.dark, .dark *));
 
-html {
+/* Tokens. Light and dark swap the ground/ink pair; lime is the one accent and
+   is only ever a fill behind ink text, never text on the ground. */
+:root {
+  --ground: #ebeee0;
+  --ink: #101400;
+  --panel: #f4f4ed;
+  --line: rgb(16 20 0 / 0.18);
+  --muted: rgb(16 20 0 / 0.66);
+  --lime: #d2ff00;
+  --night: #101400;
+  --paper: #ebeee0;
+  --ease: cubic-bezier(0.65, 0.05, 0, 1);
   color-scheme: light;
 }
 
-html.dark {
+:root.dark {
+  --ground: #101400;
+  --ink: #ebeee0;
+  --panel: #1b2010;
+  --line: rgb(235 238 224 / 0.2);
+  --muted: rgb(235 238 224 / 0.68);
   color-scheme: dark;
 }
 
-body {
-  @apply bg-white text-black;
+@theme inline {
+  --color-ground: var(--ground);
+  --color-ink: var(--ink);
+  --color-panel: var(--panel);
+  --color-line: var(--line);
+  --color-muted: var(--muted);
+  --color-lime: var(--lime);
+  --color-night: var(--night);
+  --color-paper: var(--paper);
+  --font-sans: var(--font-mona), ui-sans-serif, system-ui, sans-serif;
 }
 
-.dark body {
-  @apply bg-[var(--color-darkTheme)] text-white;
+/* The root paints behind everything, including the rubber-band overscroll past
+   either end of the page. Both ends are night (hero above, footer below), so
+   pulling past the top never reveals the paper ground of the sections. */
+html {
+  background: var(--night);
+}
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-mona), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Keyboard focus stays visible everywhere. */
 :focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;
+}
+
+/* Display type: wide, heavy, tight. */
+.display {
+  font-stretch: 122%;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  line-height: 0.9;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Buttons: a lime sweep rises from below on hover and focus. */
+.btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3rem;
+  padding: 0 1.6rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 0.45s var(--ease);
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--lime);
+  transform: translateY(101%);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  transition:
+    transform 0.55s var(--ease),
+    border-radius 0.55s var(--ease);
+}
+.btn:hover,
+.btn:focus-visible {
+  color: #101400;
+}
+.btn:hover::before,
+.btn:focus-visible::before {
+  transform: translateY(0);
+  border-radius: 0;
+}
+.btn-solid {
+  background: var(--ink);
+  color: var(--ground);
+  border-color: var(--ink);
+}
+
+/* Poster behind the canvas: the same sun the 3D scene draws, so the hero is
+   a finished frame before (or without) WebGL. */
+/* Poster behind the canvas: the stack seen from above (nested layers around
+   the lime core), so the hero is a finished frame before or without WebGL. */
+.hero-poster {
+  background: radial-gradient(
+    circle at 50% 46%,
+    rgb(210 255 0 / 0.28),
+    transparent 30%
+  );
+}
+.hero-poster::before {
+  content: '';
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  width: min(14vw, 18svh);
+  aspect-ratio: 1;
+  background: var(--lime);
+  transform: translate(-50%, -50%) perspective(900px) rotateX(58deg)
+    rotateZ(38deg);
+  box-shadow:
+    0 0 0 min(3vw, 4svh) #101400,
+    0 0 0 calc(min(3vw, 4svh) + 1px) rgb(210 255 0 / 0.5),
+    0 0 0 min(7vw, 9svh) #101400,
+    0 0 0 calc(min(7vw, 9svh) + 1px) rgb(235 238 224 / 0.3),
+    0 0 0 min(11vw, 14svh) #101400,
+    0 0 0 calc(min(11vw, 14svh) + 1px) rgb(235 238 224 / 0.2);
+}
+
+.scene-wrap {
+  opacity: 0;
+  transition: opacity 0.9s var(--ease);
+}
+.scene-wrap[data-ready='true'] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero-intro {
+    visibility: hidden;
+  }
+  .scroll-cue {
+    animation: cue 2.2s var(--ease) infinite;
+  }
+}
+
+@keyframes cue {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+/* Lenis (third-party recommended rules). */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -50,4 +199,56 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Cards and rows: a lime sweep rises from below on hover and keyboard focus. */
+.sweep {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: color 0.45s var(--ease);
+}
+.sweep::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--lime);
+  transform: translateY(101%);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  transition:
+    transform 0.6s var(--ease),
+    border-radius 0.6s var(--ease);
+}
+.sweep-host:hover .sweep,
+.sweep-host:focus-visible .sweep,
+.sweep.sweep-host:hover {
+  color: #101400;
+}
+.sweep-host:hover .sweep::before,
+.sweep-host:focus-visible .sweep::before,
+.sweep.sweep-host:hover::before {
+  transform: translateY(0);
+  border-radius: 0;
+}
+
+/* Service rows: the title slides in and an arrow draws in as the fill rises. */
+.row-title {
+  transition: transform 0.6s var(--ease);
+}
+.row-arrow {
+  opacity: 0;
+  transform: translate(-0.75rem, 0.75rem);
+  transition:
+    opacity 0.4s var(--ease),
+    transform 0.6s var(--ease);
+}
+.sweep-host:hover .row-title,
+.sweep-host:focus-visible .row-title {
+  transform: translateX(1rem);
+}
+.sweep-host:hover .row-arrow,
+.sweep-host:focus-visible .row-arrow {
+  opacity: 1;
+  transform: none;
 }

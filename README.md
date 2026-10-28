@@ -9,6 +9,7 @@ A modern, responsive portfolio website built with Next.js, featuring automated C
 
 - 🚀 **Next.js 15** with Turbopack for blazing-fast development
 - 🎨 **Tailwind CSS** for modern, responsive styling
+- 🧊 **Scroll-driven 3D hero** built with React Three Fiber, with GSAP ScrollTrigger and Lenis choreography (static fallback for reduced motion and no-WebGL)
 - 📱 **Fully Responsive** design for all devices
 - ⚡ **Performance Optimized** with Lighthouse CI monitoring
 - 🔄 **Automated CI/CD** with GitHub Actions

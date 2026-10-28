@@ -1,19 +1,14 @@
-import { Outfit, Ovo } from 'next/font/google';
+import { Mona_Sans } from 'next/font/google';
 import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
+import SmoothScroll from './components/SmoothScroll';
+import Pointer from './components/Pointer';
 
-const ovo = Ovo({
+const mona = Mona_Sans({
   subsets: ['latin'],
-  weight: ['400'],
+  axes: ['wdth'],
   display: 'swap',
-  variable: '--font-ovo-family',
-});
-
-const outfit = Outfit({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-  variable: '--font-outfit-family',
+  variable: '--font-mona',
 });
 
 const siteUrl = 'https://m-muzammil.vercel.app';
@@ -48,26 +43,28 @@ export const metadata = {
   },
 };
 
-// Runs before first paint so the stored theme is applied without a flash.
-const themeScript = `try{var t=localStorage.theme;if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark')}}catch(e){}`;
+// Runs before first paint so the system theme is applied without a flash.
+const themeScript = `try{if(matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.classList.add('dark')}}catch(e){}`;
+
+// Lets CSS hide intro-animated type only when JS is there to reveal it.
+const jsScript = `document.documentElement.classList.add('js')`;
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`scroll-smooth ${outfit.variable} ${ovo.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={mona.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: jsScript }} />
       </head>
-      <body className="font-outfit antialiased leading-8 overflow-x-hidden">
+      <body className="overflow-x-clip">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-black focus:px-5 focus:py-2 focus:text-white dark:focus:bg-white dark:focus:text-black"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-lime focus:px-5 focus:py-2 focus:text-night"
         >
           Skip to content
         </a>
+        <SmoothScroll />
+        <Pointer />
         {children}
         <Analytics />
       </body>

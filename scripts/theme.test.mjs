@@ -1,5 +1,5 @@
-// Checks the no-flash theme script in app/layout.js against the cases that
-// caused the original flash-of-wrong-theme bug. Run with: npm test
+// Checks the no-flash theme script in app/layout.js follows the system theme.
+// Run with: npm test
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
@@ -22,36 +22,13 @@ const run = ({ stored, systemDark }) => {
   return classes.has('dark');
 };
 
+assert.equal(run({ systemDark: true }), true, 'follows dark system');
+assert.equal(run({ systemDark: false }), false, 'follows light system');
+// There is no toggle any more, so a choice stored by the old one must not stick.
 assert.equal(
   run({ stored: 'dark', systemDark: false }),
-  true,
-  'stored dark wins over light system'
-);
-assert.equal(
-  run({ stored: 'light', systemDark: true }),
   false,
-  'stored light wins over dark system'
-);
-assert.equal(
-  run({ stored: undefined, systemDark: true }),
-  true,
-  'no choice follows dark system'
-);
-assert.equal(
-  run({ stored: undefined, systemDark: false }),
-  false,
-  'no choice follows light system'
+  'old stored dark is ignored'
 );
 
-// The toggle in Navbar.jsx must write back a value the script above understands.
-const navbar = readFileSync(
-  new URL('../app/components/Navbar.jsx', import.meta.url),
-  'utf8'
-);
-assert.match(
-  navbar,
-  /localStorage\.theme = isDark \? 'dark' : 'light'/,
-  "toggle must persist 'dark' or 'light' (an empty string would look like 'never chosen')"
-);
-
-console.log('theme: 5 checks passed');
+console.log('theme: 3 checks passed');

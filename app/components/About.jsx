@@ -1,126 +1,100 @@
 'use client';
-import { assets, infoList, toolsData } from '@/assets/assets';
+import { useRef } from 'react';
 import Image from 'next/image';
-import React from 'react';
-import { motion } from 'motion/react';
-import ThemeImage from './ThemeImage';
-
-const viewport = { once: true, amount: 0.2 };
+import { assets, infoList } from '@/assets/assets';
+import { gsap, useGSAP } from '../lib/gsap';
+import { motionOk, revealLines } from '../lib/reveal';
 
 const About = () => {
+  const root = useRef(null);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add(motionOk, () => {
+        revealLines('.about-title');
+        gsap.fromTo(
+          '.about-frame',
+          { clipPath: 'inset(100% 0% 0% 0% round 1.5rem)' },
+          {
+            clipPath: 'inset(0% 0% 0% 0% round 1.5rem)',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '.about-frame',
+              start: 'top 92%',
+              end: 'top 40%',
+              scrub: true,
+            },
+          }
+        );
+        gsap.fromTo(
+          '.about-img',
+          { yPercent: -8, scale: 1.18 },
+          {
+            yPercent: 8,
+            scale: 1.05,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '.about-frame',
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            },
+          }
+        );
+      });
+    },
+    { scope: root }
+  );
+
   return (
     <section
+      ref={root}
       id="about"
-      className="w-full px-6 sm:px-[12%] py-10 scroll-mt-24 mt-16"
+      className="relative z-10 -mt-10 scroll-mt-0 rounded-t-[2.5rem] bg-ground px-4 pt-20 pb-24 sm:px-8 sm:pt-28 lg:pb-36"
     >
-      <motion.p
-        className="text-center mt-2 text-lg font-ovo"
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={viewport}
-        transition={{ duration: 0.5 }}
-      >
-        Introduction
-      </motion.p>
-      <motion.h2
-        className="text-center text-4xl sm:text-5xl font-ovo"
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={viewport}
-        transition={{ duration: 0.5, delay: 0.1 }}
-      >
-        About Me
-      </motion.h2>
-
-      <div className="max-w-6xl mx-auto">
-        <div className="flex w-full flex-col lg:flex-row items-center justify-center gap-10 sm:gap-20 my-10">
-          <motion.div
-            className="w-48 sm:w-80 rounded-3xl max-w-none mx-auto lg:mx-0"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={viewport}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="lg:col-span-5">
+          <div className="about-frame relative aspect-[4/5] overflow-hidden rounded-3xl bg-panel lg:sticky lg:top-24">
             <Image
               src={assets.user_image}
               alt="Muhammad Muzammil"
-              className="w-full rounded-3xl"
+              fill
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              className="about-img object-cover object-[50%_30%]"
             />
-          </motion.div>
-          <motion.div
-            className="flex-1 text-center lg:text-left"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={viewport}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <p className="mb-10 max-w-xl mx-auto lg:mx-0 font-ovo">
-              I am a beginner full stack developer passionate about building
-              projects that connect frontend and backend. My journey began with
-              C++ which strengthened my problem solving foundation, and I later
-              expanded into JavaScript, React.js, and Next.js for modern web
-              development. On the backend I work with NestJS and SQL, while also
-              using MongoDB for database management. I am currently exploring
-              Angular at an introductory level to broaden my understanding of
-              frameworks. I focus on learning through projects, experimenting
-              with new tools, and improving my coding practices to grow into a
-              versatile developer.
-            </p>
+          </div>
+        </div>
 
-            {/* Info List */}
-            <ul className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-xl mx-auto lg:mx-0">
-              {infoList.map(({ icon, iconDark, title, description }, index) => (
-                <motion.li
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={viewport}
-                  transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                  key={title}
-                  className="border-[0.5px] border-gray-400 rounded-xl p-6 hover:bg-lightHover hover:shadow-black duration-500 dark:border-white dark:hover:shadow-white/50 dark:hover:bg-darkHover/50"
-                >
-                  <ThemeImage
-                    light={icon}
-                    dark={iconDark}
-                    alt=""
-                    className="w-7 mt-3 mx-auto lg:mx-0"
-                  />
-                  <h3 className="my-4 font-semibold text-gray-700 dark:text-white">
-                    {title}
-                  </h3>
-                  <p className="text-gray-600 text-sm dark:text-white/80">
-                    {description}
-                  </p>
-                </motion.li>
-              ))}
-            </ul>
+        <div className="lg:col-span-7">
+          <p className="label text-muted">About me</p>
+          <h2 className="about-title display mt-5 text-[clamp(2.4rem,6vw,5.5rem)]">
+            From C++ to the full stack
+          </h2>
+          <p className="mt-10 max-w-2xl text-lg leading-relaxed sm:text-xl">
+            I am a beginner full stack developer passionate about building
+            projects that connect frontend and backend. My journey began with
+            C++ which strengthened my problem solving foundation, and I later
+            expanded into JavaScript, React.js, and Next.js for modern web
+            development. On the backend I work with NestJS and SQL, while also
+            using MongoDB for database management. I am currently exploring
+            Angular at an introductory level to broaden my understanding of
+            frameworks. I focus on learning through projects, experimenting with
+            new tools, and improving my coding practices to grow into a
+            versatile developer.
+          </p>
 
-            {/* Tools */}
-            <motion.h4
-              className="my-6 text-gray-700 font-ovo dark:text-white/80"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={viewport}
-              transition={{ duration: 0.5, delay: 0.5 }}
-            >
-              My Expertise
-            </motion.h4>
-            <ul className="flex flex-wrap justify-center lg:justify-start items-center gap-3 sm:gap-5">
-              {toolsData.map((tool, index) => (
-                <motion.li
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={viewport}
-                  transition={{ duration: 0.3, delay: 0.6 + index * 0.05 }}
-                  whileHover={{ scale: 1.1 }}
-                  key={index}
-                  className="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg duration-500"
-                >
-                  <Image src={tool} alt="" className="w-5 sm:w-7" />
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
+          <dl className="mt-14 border-t border-line">
+            {infoList.map(({ title, description }) => (
+              <div
+                key={title}
+                className="grid gap-2 border-b border-line py-6 sm:grid-cols-[14rem_1fr] sm:gap-8"
+              >
+                <dt className="label pt-1 text-muted">{title}</dt>
+                <dd className="text-lg">{description}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>

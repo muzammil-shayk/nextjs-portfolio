@@ -1,15 +1,25 @@
 'use client';
-import { assets } from '@/assets/assets';
-import Image from 'next/image';
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import { useRef, useState } from 'react';
+import { gsap, useGSAP } from '../lib/gsap';
+import { motionOk, revealLines } from '../lib/reveal';
 
-const viewport = { once: true, amount: 0.2 };
 const ACCESS_KEY = '5e50e80f-e87d-40a9-84a5-8753b0faf380';
 
+const fieldClass =
+  'w-full border-0 border-b border-night/40 bg-transparent py-3 text-lg text-night placeholder:text-night/55 focus:border-night focus:outline-none focus-visible:outline-none';
+
 const Contact = () => {
+  const root = useRef(null);
   const [status, setStatus] = useState(null); // { ok: boolean, message: string }
   const [sending, setSending] = useState(false);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add(motionOk, () => revealLines('.contact-title'));
+    },
+    { scope: root }
+  );
 
   const onSubmit = async event => {
     event.preventDefault();
@@ -46,119 +56,96 @@ const Contact = () => {
     }
   };
 
-  const fieldClass =
-    'w-full p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white text-black placeholder-gray-500 dark:bg-darkHover/30 dark:border-white/90 dark:text-white dark:placeholder-white/60';
-
   return (
     <section
+      ref={root}
       id="contact"
-      className="w-full px-6 sm:px-[12%] py-10 scroll-mt-24 mt-16 bg-[url('/footer-bg-color.png')] bg-no-repeat bg-center bg-[length:90%_auto] dark:bg-none"
+      className="relative z-10 rounded-t-[2.5rem] bg-lime px-4 pt-20 pb-24 text-night sm:px-8 sm:pt-28 lg:pb-32"
     >
-      <motion.p
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={viewport}
-        transition={{ duration: 0.5 }}
-        className="text-center mt-2 text-lg font-ovo"
-      >
-        Connect with me
-      </motion.p>
-      <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={viewport}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        className="text-center text-4xl sm:text-5xl font-ovo"
-      >
-        Get in touch
-      </motion.h2>
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={viewport}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="text-center max-w-2xl mx-auto mt-5 mb-12 font-ovo"
-      >
-        I&apos;d love to hear from you. If you have any questions, comments or
-        feedback, please use the form below.
-      </motion.p>
-      <motion.form
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={viewport}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        onSubmit={onSubmit}
-        className="max-w-2xl mx-auto"
-      >
-        {/* Honeypot: bots fill it, people never see it. */}
-        <input
-          type="checkbox"
-          name="botcheck"
-          tabIndex={-1}
-          autoComplete="off"
-          className="hidden"
-        />
-        <div className="grid grid-cols-auto gap-6 mt-10 mb-8">
-          <div>
-            <label htmlFor="name" className="sr-only">
-              Your name
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              autoComplete="name"
-              placeholder="Enter your name"
-              required
-              className={fieldClass}
-            />
-          </div>
-          <div>
-            <label htmlFor="email" className="sr-only">
-              Your email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              autoComplete="email"
-              placeholder="Enter your E-Mail"
-              required
-              className={fieldClass}
-            />
-          </div>
+      <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-12">
+        <div className="lg:col-span-6">
+          <p className="label">Connect with me</p>
+          <h2 className="contact-title display mt-5 text-[clamp(2.6rem,5.6vw,5.5rem)]">
+            Let&apos;s build something
+          </h2>
+          <p className="mt-8 max-w-md text-lg">
+            I&apos;d love to hear from you. If you have any questions, comments
+            or feedback, use the form.
+          </p>
         </div>
-        <label htmlFor="message" className="sr-only">
-          Your message
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          rows="6"
-          placeholder="Enter your message"
-          required
-          className={`${fieldClass} mb-6`}
-        ></textarea>
-        <motion.button
-          whileHover={{ scale: sending ? 1 : 1.05 }}
-          transition={{ duration: 0.3 }}
-          type="submit"
-          disabled={sending}
-          className="py-3 px-8 w-max flex items-center justify-between gap-2 bg-black/80 text-white rounded-full mx-auto hover:bg-black duration-500 disabled:opacity-60 disabled:cursor-not-allowed dark:bg-transparent dark:border-[0.5px] dark:hover:bg-darkHover"
-        >
-          {sending ? 'Sending…' : 'Submit Now'}{' '}
-          <Image src={assets.right_arrow_white} alt="" className="w-4" />
-        </motion.button>
-        <p
-          role="status"
-          aria-live="polite"
-          className={`mt-4 text-center min-h-8 ${
-            status?.ok === false ? 'text-red-600 dark:text-red-400' : ''
-          }`}
-        >
-          {status?.message ?? ''}
-        </p>
-      </motion.form>
+
+        <form onSubmit={onSubmit} className="lg:col-span-6 lg:pt-14">
+          {/* Honeypot: bots fill it, people never see it. */}
+          <input
+            type="checkbox"
+            name="botcheck"
+            tabIndex={-1}
+            autoComplete="off"
+            className="hidden"
+          />
+          <div className="grid gap-8 sm:grid-cols-2">
+            <div>
+              <label htmlFor="name" className="label">
+                Your name
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                autoComplete="name"
+                placeholder="Jane Doe"
+                required
+                className={fieldClass}
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="label">
+                Your email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                placeholder="jane@example.com"
+                required
+                className={fieldClass}
+              />
+            </div>
+          </div>
+          <div className="mt-8">
+            <label htmlFor="message" className="label">
+              Your message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Tell me about the project"
+              required
+              className={`${fieldClass} resize-none`}
+            />
+          </div>
+          <button
+            type="submit"
+            disabled={sending}
+            data-cursor="Send"
+            data-magnetic
+            className="btn mt-10 bg-night !text-paper hover:!text-night disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {sending ? 'Sending…' : 'Send message'}
+          </button>
+          <p
+            role="status"
+            aria-live="polite"
+            className={`mt-4 min-h-8 font-medium ${
+              status?.ok === false ? 'text-red-800' : ''
+            }`}
+          >
+            {status?.message ?? ''}
+          </p>
+        </form>
+      </div>
     </section>
   );
 };
