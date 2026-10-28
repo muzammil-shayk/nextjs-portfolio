@@ -23,9 +23,14 @@ jobs:
           cache: 'npm'
 
       - name: Update npm dependencies
+        # npm ci first: `npm update` on a bare checkout crashed in CI with
+        # "Cannot read properties of null (reading 'edgesOut')".
+        # --audit-level=none: advisories with no non-breaking fix must not fail
+        # the job; ci-cd.yml's `npm audit --audit-level=high` is the gate.
         run: |
+          npm ci
           npm update
-          npm audit fix
+          npm audit fix --audit-level=none
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
