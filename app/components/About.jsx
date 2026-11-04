@@ -69,22 +69,36 @@ const About = () => {
         <div className="lg:col-span-7">
           <p className="label text-muted">About me</p>
           <h2 className="about-title display mt-5 text-[clamp(2.4rem,6vw,5.5rem)]">
-            From C++ to the full stack
+            From C++ to every screen
           </h2>
-          <p className="mt-10 max-w-2xl text-lg leading-relaxed sm:text-xl">
-            I am a beginner full stack developer passionate about building
-            projects that connect frontend and backend. My journey began with
-            C++ which strengthened my problem solving foundation, and I later
-            expanded into JavaScript, React.js, and Next.js for modern web
-            development. On the backend I work with NestJS and SQL, while also
-            using MongoDB for database management. I am currently exploring
-            Angular at an introductory level to broaden my understanding of
-            frameworks. I focus on learning through projects, experimenting with
-            new tools, and improving my coding practices to grow into a
-            versatile developer.
-          </p>
+          <div className="mt-10 max-w-2xl space-y-6 text-lg leading-relaxed sm:text-xl">
+            <p>
+              I&apos;m Muzammil, a full-stack engineer in Lahore. I study
+              Computer Science at UMT Lahore (BS, 2023 to now, CGPA 3.50) and
+              interned as a software engineer at Greyloops (on-site, Johar Town,
+              Lahore) in 2025, on MERN and Next.js apps.
+            </p>
+            <p>
+              I like products that get all the way out the door. A review
+              platform with a site and a phone app on one API, built with
+              friends. A desktop reader with its own release pipeline,
+              co-developed. A file-sharing site that deletes everything after
+              five minutes. I work on the backend, the screens and the build
+              that ships them.
+            </p>
+            <p>
+              I use AI coding tools every day, and I read and test what they
+              write. They make me faster; they do not replace checking.
+            </p>
+            <p>
+              Outside code: I have built and repaired more than a dozen PCs for
+              friends and local clients, and I like indie games and good cafes
+              in Lahore.
+            </p>
+          </div>
 
-          <dl className="mt-14 border-t border-line">
+          <h3 className="label mt-14 text-muted">Skills</h3>
+          <dl className="mt-4 border-t border-line">
             {infoList.map(({ title, description }) => (
               <div
                 key={title}

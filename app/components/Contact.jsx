@@ -2,6 +2,7 @@
 import { useRef, useState } from 'react';
 import { gsap, useGSAP } from '../lib/gsap';
 import { motionOk, revealLines } from '../lib/reveal';
+import { hireHref, site } from '@/assets/assets';
 
 const ACCESS_KEY = '5e50e80f-e87d-40a9-84a5-8753b0faf380';
 
@@ -66,11 +67,36 @@ const Contact = () => {
         <div className="lg:col-span-6">
           <p className="label">Connect with me</p>
           <h2 className="contact-title display mt-5 text-[clamp(2.6rem,5.6vw,5.5rem)]">
-            Let&apos;s build something
+            Let&apos;s build something that ships
           </h2>
           <p className="mt-8 max-w-md text-lg">
-            I&apos;d love to hear from you. If you have any questions, comments
-            or feedback, use the form.
+            {site.openTo} Tell me what you&apos;re building and I&apos;ll reply
+            with questions or a plan.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href={hireHref}
+              data-magnetic
+              className="btn bg-night !text-paper hover:!text-night focus-visible:outline-night"
+            >
+              Email me
+            </a>
+            <a
+              href={site.cv}
+              download
+              data-magnetic
+              className="btn focus-visible:outline-night"
+            >
+              Download CV
+            </a>
+          </div>
+          <p className="mt-6 text-base">
+            <a
+              href={`mailto:${site.email}`}
+              className="inline-flex min-h-11 items-center font-semibold underline underline-offset-4 hover:no-underline"
+            >
+              {site.email}
+            </a>
           </p>
         </div>
 
@@ -131,7 +157,7 @@ const Contact = () => {
             disabled={sending}
             data-cursor="Send"
             data-magnetic
-            className="btn mt-10 bg-night !text-paper hover:!text-night disabled:cursor-not-allowed disabled:opacity-60"
+            className="btn mt-10 bg-night !text-paper hover:!text-night focus-visible:outline-night disabled:cursor-not-allowed disabled:opacity-60"
           >
             {sending ? 'Sending…' : 'Send message'}
           </button>

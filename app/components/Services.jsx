@@ -27,9 +27,9 @@ const Services = () => {
           On the whole circuit
         </h2>
         <p className="mt-8 max-w-2xl text-lg text-muted">
-          Clean, functional, responsive web applications: React.js and Next.js
-          up front, SQL, MongoDB and NestJS behind, and a C++ habit of keeping
-          things efficient.
+          One engineer from screen to server: web apps, React Native mobile apps
+          and Electron desktop apps, with AI features that run only when the
+          user asks. A C++ habit keeps all of it efficient.
         </p>
 
         <ul className="mt-16 border-t border-line">

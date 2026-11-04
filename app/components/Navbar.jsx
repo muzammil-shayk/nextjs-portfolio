@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap, ScrollTrigger, useGSAP } from '../lib/gsap';
 import { scrollToHash, smooth } from '../lib/smooth';
+import { hireHref, site } from '@/assets/assets';
 
 const links = [
   { href: '#top', label: 'Home' },
@@ -69,7 +70,7 @@ const Navbar = () => {
           onClick={go('#top')}
           data-magnetic
           aria-label="Muhammad Muzammil, back to top"
-          className="flex h-12 items-center gap-2 rounded-full bg-night px-5 text-paper ring-1 ring-paper/15"
+          className="flex h-12 items-center gap-2 rounded-full bg-night px-5 text-paper ring-1 ring-paper/15 focus-visible:outline-offset-[-5px]"
         >
           <span aria-hidden="true" className="size-2.5 rounded-full bg-lime" />
           <span className="display text-base tracking-tight">Muzammil</span>
@@ -77,7 +78,7 @@ const Navbar = () => {
 
         <nav
           aria-label="Main"
-          className="absolute top-4 left-1/2 hidden h-12 -translate-x-1/2 items-center rounded-full bg-night px-3 text-paper ring-1 ring-paper/15 md:flex"
+          className="absolute top-4 left-1/2 hidden h-12 -translate-x-1/2 items-center rounded-full bg-night px-3 text-paper ring-1 ring-paper/15 lg:flex"
         >
           <ul className="flex items-center">
             {links.map(({ href, label }) => (
@@ -86,7 +87,7 @@ const Navbar = () => {
                   href={href}
                   onClick={go(href)}
                   data-magnetic
-                  className="rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300 hover:bg-lime hover:text-night focus-visible:bg-lime focus-visible:text-night"
+                  className="inline-flex min-h-11 items-center rounded-full px-4 text-sm font-medium transition-colors duration-300 hover:bg-lime hover:text-night focus-visible:bg-lime focus-visible:text-night"
                 >
                   {label}
                 </a>
@@ -96,20 +97,24 @@ const Navbar = () => {
         </nav>
 
         <a
-          href="#work"
-          onClick={go('#work')}
+          href={hireHref}
           data-magnetic
-          className="hidden h-12 items-center gap-3 rounded-full bg-night pr-1.5 pl-5 text-sm text-paper ring-1 ring-paper/15 md:flex"
+          className="hidden h-12 items-center gap-3 rounded-full bg-night pr-1.5 pl-4 text-sm text-paper ring-1 ring-paper/15 focus-visible:outline-offset-[-5px] lg:flex"
         >
-          <span className="label text-paper/75">Latest build</span>
+          <span className="flex items-center gap-2">
+            <span aria-hidden="true" className="size-2 rounded-full bg-lime" />
+            <span className="label text-paper/75">
+              Available<span className="hidden xl:inline"> for work</span>
+            </span>
+          </span>
           <span className="rounded-full bg-lime px-3 py-1.5 font-semibold text-night">
-            AirBeam
+            Hire me
           </span>
         </a>
 
         <button
           type="button"
-          className="grid size-12 place-items-center rounded-full bg-lime text-night md:hidden"
+          className="grid size-12 place-items-center rounded-full bg-lime text-night focus-visible:outline-offset-[-5px] lg:hidden"
           aria-label="Open menu"
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
@@ -132,7 +137,7 @@ const Navbar = () => {
       <div
         id="mobile-menu"
         inert={!menuOpen}
-        className="fixed inset-0 z-[60] flex flex-col bg-night px-6 pt-4 pb-10 text-paper transition-[clip-path] duration-700 [clip-path:inset(0_0_100%_0)] data-[open=true]:[clip-path:inset(0)] md:hidden"
+        className="fixed inset-0 z-[60] flex flex-col bg-night px-6 pt-4 pb-10 text-paper transition-[clip-path] duration-700 [clip-path:inset(0_0_100%_0)] data-[open=true]:[clip-path:inset(0)] lg:hidden"
         data-open={menuOpen}
         style={{ transitionTimingFunction: 'var(--ease)' }}
       >
@@ -168,6 +173,18 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
+          <p className="label mt-10 flex items-center gap-2 text-paper/75">
+            <span aria-hidden="true" className="size-2 rounded-full bg-lime" />
+            Available for work · Remote or on-site in Lahore
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <a href={hireHref} className="btn bg-lime text-night">
+              Hire me
+            </a>
+            <a href={site.cv} download className="btn">
+              Download CV
+            </a>
+          </div>
         </nav>
       </div>
     </>

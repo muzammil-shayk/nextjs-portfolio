@@ -42,8 +42,8 @@ const Statement = () => {
       <div className="sticky top-0 flex h-svh flex-col justify-center px-4 sm:px-8">
         <p className="label mb-8">Intro</p>
         <p className="statement-text max-w-[20ch] text-[clamp(2.3rem,7.2vw,7rem)] leading-[1] font-bold tracking-[-0.035em] sm:max-w-[22ch]">
-          Started with C++. Now building the whole stack, from the interface
-          people touch to the database behind it.
+          Started with C++. Now shipping the whole stack on web, mobile and
+          desktop, from the screen people touch to the data behind it.
         </p>
       </div>
     </section>

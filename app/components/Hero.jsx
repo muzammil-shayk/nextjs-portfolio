@@ -1,16 +1,9 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { gsap, SplitText, useGSAP } from '../lib/gsap';
-import { scrollToHash } from '../lib/smooth';
 import { silicon } from '../lib/silicon';
 import SiliconCanvas from './SiliconCanvas';
-
-const chapters = [
-  ['01', 'Interface', 'React, Next.js and Angular: fast, responsive screens.'],
-  ['02', 'Engine', 'NestJS and REST APIs, carrying every request.'],
-  ['03', 'Data', 'SQL and MongoDB, modelled to fit the problem.'],
-  ['04', 'Foundations', 'C++ and algorithms, the core it all started from.'],
-];
+import { chapters, hireHref, site } from '@/assets/assets';
 
 const hasWebGL = () => {
   try {
@@ -19,11 +12,6 @@ const hasWebGL = () => {
   } catch {
     return false;
   }
-};
-
-const jump = href => e => {
-  e.preventDefault();
-  scrollToHash(href);
 };
 
 const Hero = () => {
@@ -204,20 +192,21 @@ const Hero = () => {
       <div className="relative z-10 flex h-full flex-col justify-between px-4 pt-24 pb-6 sm:px-8 sm:pb-8">
         <div className="hero-top hero-intro flex items-start justify-between gap-4">
           <p className="hero-fade label max-w-[14ch] pt-3 sm:max-w-none">
-            Full Stack Developer
+            {site.role}
           </p>
-          <a
-            href="#work"
-            onClick={jump('#work')}
-            className="hero-fade flex items-center gap-3 rounded-full bg-paper/10 py-1.5 pr-1.5 pl-1.5 text-sm sm:pl-4 ring-1 ring-paper/20 backdrop-blur-md md:hidden"
-          >
-            <span className="label hidden text-paper/75 sm:inline">
-              Latest build
+          <p className="hero-fade flex items-center gap-2 rounded-full bg-paper/10 py-2 pr-4 pl-3 text-sm ring-1 ring-paper/20 backdrop-blur-md lg:hidden">
+            <span
+              aria-hidden="true"
+              className="size-2 shrink-0 rounded-full bg-lime"
+            />
+            <span>
+              {site.availability}
+              <span className="block text-xs whitespace-nowrap text-paper/75 sm:inline sm:text-sm">
+                <span className="hidden sm:inline"> · </span>Remote or on-site
+                in Lahore
+              </span>
             </span>
-            <span className="rounded-full bg-lime px-3 py-1.5 font-semibold text-night">
-              AirBeam
-            </span>
-          </a>
+          </p>
         </div>
 
         <div className="min-h-0 flex-1" />
@@ -247,24 +236,23 @@ const Hero = () => {
             <span className="display hero-giant block text-[calc((100cqw-2rem)/6.05)] sm:text-[calc((100cqw-4rem)/6.05)] leading-[0.82] whitespace-nowrap">
               Muzammil
             </span>
-            <span className="sr-only"> — Full Stack Developer</span>
+            <span className="sr-only"> — Full Stack Engineer</span>
           </h1>
           <div className="hero-intro mt-5 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <p className="hero-fade max-w-md text-base [@media(max-height:700px)]:hidden text-paper/85 sm:text-lg">
-              Full stack developer in the making: C++, JavaScript, React,
-              Next.js, SQL and MongoDB.
+              {site.summary} Next.js, React Native, Electron and Node.js, with
+              AI-assisted workflows.
             </p>
             <div className="hero-fade flex flex-wrap gap-3">
               <a
-                href="#contact"
-                onClick={jump('#contact')}
+                href={hireHref}
                 data-magnetic
                 className="btn bg-lime text-night"
               >
-                Contact me
+                Hire me
               </a>
-              <a href="/MuzammilCV.pdf" download data-magnetic className="btn">
-                My resume
+              <a href={site.cv} download data-magnetic className="btn">
+                Download CV
               </a>
             </div>
           </div>

@@ -222,11 +222,13 @@ html.lenis body {
 }
 .sweep-host:hover .sweep,
 .sweep-host:focus-visible .sweep,
+.sweep-host:has(:focus-visible) .sweep,
 .sweep.sweep-host:hover {
   color: #101400;
 }
 .sweep-host:hover .sweep::before,
 .sweep-host:focus-visible .sweep::before,
+.sweep-host:has(:focus-visible) .sweep::before,
 .sweep.sweep-host:hover::before {
   transform: translateY(0);
   border-radius: 0;

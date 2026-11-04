@@ -7,11 +7,7 @@ import { motionOk } from '../lib/reveal';
 const Row = ({ outline }) => (
   <div className="marquee-row flex w-max">
     {[0, 1].map(copy => (
-      <ul
-        key={copy}
-        aria-hidden={copy === 1 || undefined}
-        className="flex shrink-0 items-center"
-      >
+      <ul key={copy} className="flex shrink-0 items-center">
         {toolsData.map(tool => (
           <li
             key={tool}
@@ -71,8 +67,15 @@ const Marquee = () => {
       aria-label="Tools"
       className="overflow-hidden bg-ground py-16 text-ink"
     >
-      <Row />
-      <Row outline />
+      <ul className="sr-only">
+        {toolsData.map(tool => (
+          <li key={tool}>{tool}</li>
+        ))}
+      </ul>
+      <div aria-hidden="true">
+        <Row />
+        <Row outline />
+      </div>
     </section>
   );
 };

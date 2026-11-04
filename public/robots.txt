@@ -19,4 +19,4 @@ Allow: *.svg
 Allow: *.ico
 
 # Sitemap location
-Sitemap: https://m-muzammil.vercel.app/sitemap.xml
+Sitemap: https://www.m-muzammil.dev/sitemap.xml

@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import { gsap, useGSAP } from '../lib/gsap';
 import { motionOk } from '../lib/reveal';
 import { scrollToHash } from '../lib/smooth';
+import { site } from '@/assets/assets';
 
 const socials = [
   { label: 'GitHub', href: 'https://github.com/muzammil-shayk' },
@@ -10,7 +11,8 @@ const socials = [
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/in/muhammad-muzammil-8771a4309/',
   },
-  { label: 'Resume', href: '/MuzammilCV.pdf' },
+  { label: 'Email', href: `mailto:${site.email}` },
+  { label: 'Resume', href: site.cv },
 ];
 
 const Footer = () => {
@@ -52,8 +54,10 @@ const Footer = () => {
                 href={href}
                 {...(href.startsWith('http')
                   ? { target: '_blank', rel: 'noopener noreferrer' }
-                  : { download: true })}
-                className="label inline-block py-3 underline-offset-8 hover:text-lime hover:underline focus-visible:text-lime"
+                  : href.startsWith('mailto:')
+                    ? {}
+                    : { download: true })}
+                className="label inline-flex min-h-11 items-center underline-offset-8 hover:text-lime hover:underline focus-visible:text-lime"
               >
                 {label}
               </a>
@@ -84,7 +88,7 @@ const Footer = () => {
 
       <div className="flex flex-col gap-2 border-t border-paper/20 py-6 text-sm text-paper/75 sm:flex-row sm:justify-between">
         <p>© {new Date().getFullYear()} M. Muzammil. All rights reserved.</p>
-        <p>Full Stack Developer</p>
+        <p>Full Stack Engineer · Remote or on-site in Lahore</p>
       </div>
     </footer>
   );
